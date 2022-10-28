@@ -12,7 +12,7 @@ public class test_cube2 {
     public void cube(){
         //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         //int n = Integer.parseInt(br.readLine());
-        int n = 3;
+        int n = 2;
         n = n * 2 + 1;
 
         int[][] res = new int[n][n];
