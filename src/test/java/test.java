@@ -20,7 +20,7 @@ public class test {
         List<Integer> countTab;
         int count;
         for (int kx = xm; kx < xmm - dx + 1; kx++) {
-            for (int ky = ym; kx < ymm - dy + 1; ky++) {
+            for (int ky = ym; ky < ymm - dy + 1; ky++) {
                 countTab = new ArrayList<>();
                 count = 0;
                 for (int i = 0; i < trades.length; i++) {
@@ -46,29 +46,50 @@ public class test {
     @Test
     public void cube() throws IOException {
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n, sq;
-        String  s;
-        String[] arr;
+        if (false) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String s;
+            String[] arr;
 
-        s = br.readLine();
-        arr = s.split(" ");
-        n = Integer.parseInt(arr[0]);
-        sq = Integer.parseInt(arr[1]);
-
-        // считаем массив продаж на карте
-        trades = new int[n][];
-        for (int i=0; i < n; i++) {
             s = br.readLine();
             arr = s.split(" ");
-            x = Integer.parseInt(arr[0]);
-            trades[i][0] = x;
-            if (x > xmm) xmm = x;
-            if (x < xm) xm = x;
-            y = Integer.parseInt(arr[1]);
-            trades[i][0] = y;
-            if (y > ymm) ymm = x;
-            if (y < ym) ym = x;
+            n = Integer.parseInt(arr[0]);
+            sq = Integer.parseInt(arr[1]);
+
+            // считаем массив продаж на карте
+            trades = new int[n][];
+            for (int i = 0; i < n; i++) {
+                s = br.readLine();
+                arr = s.split(" ");
+                x = Integer.parseInt(arr[0]);
+                trades[i][0] = x;
+                if (x > xmm) xmm = x;
+                if (x < xm) xm = x;
+                y = Integer.parseInt(arr[1]);
+                trades[i][0] = y;
+                if (y > ymm) ymm = x;
+                if (y < ym) ym = x;
+            }
+        } else {
+            // ручной ввод
+            n = 5;
+            sq = 3;
+            trades = new int[][]{
+                    new int[]{1,1},
+                    new int[]{1,2},
+                    new int[]{4,1},
+                    new int[]{13,5},
+                    new int[]{2,3}
+            };
+            for (int i = 0; i < n; i++) {
+                x = trades[i][0];
+                if (x > xmm) xmm = x;
+                if (x < xm) xm = x;
+                y = trades[i][0];
+                if (y > ymm) ymm = x;
+                if (y < ym) ym = x;
+            }
         }
 
         // по площади прямоугольника находим стороны
@@ -78,7 +99,7 @@ public class test {
         while (dx * dy < sq) {
             dx++;
             while (dx * dy > sq) {
-                dy++;
+                dy--;
             }
         }
 
@@ -89,13 +110,16 @@ public class test {
             System.out.println("0");
             return;
         }
+        // выводим сколько нашлось продаж максимум
         System.out.println("" + resSUM);
-        System.out.println("" + resTrades.get(0));
+        // выводим номера продаж
+        System.out.print("" + resTrades.get(0));
         if (resSUM == 1)
             return;
         for (int i = 1; i < resSUM; i++) {
-            System.out.println(" " + resTrades.get(i));
+            System.out.print(" " + resTrades.get(i));
         }
+        System.out.println();
 
     }
 }
