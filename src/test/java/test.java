@@ -19,8 +19,8 @@ public class test {
 
         List<Integer> countTab;
         int count;
-        for (int kx = xm; kx < xmm - dx + 1; kx++) {
-            for (int ky = ym; ky < ymm - dy + 1; ky++) {
+        for (int kx = xm; kx <= xmm - dx; kx++) {
+            for (int ky = ym; ky <= ymm - dy; ky++) {
                 countTab = new ArrayList<>();
                 count = 0;
                 for (int i = 0; i < trades.length; i++) {
@@ -48,6 +48,7 @@ public class test {
 
         int n, sq;
         if (false) {
+            // чтение из файла - для оригинальных тстов Яндекса
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String s;
             String[] arr;
@@ -67,7 +68,7 @@ public class test {
                 if (x > xmm) xmm = x;
                 if (x < xm) xm = x;
                 y = Integer.parseInt(arr[1]);
-                trades[i][0] = y;
+                trades[i][1] = y; // ошибка по невнимательности (было trades[i][0]) - без отладчика на ее поиск могло уйти еще 20 минут
                 if (y > ymm) ymm = x;
                 if (y < ym) ym = x;
             }
@@ -103,7 +104,7 @@ public class test {
             }
         }
 
-        // по точка продаж найдем границы поиска
+        // по точкам продаж найдем границы поиска
         solve(dx, dy);
 
         if (resSUM == 0) {
